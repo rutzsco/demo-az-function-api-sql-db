@@ -2,6 +2,18 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "serverName": {
+      "type": "string",
+      "metadata": {
+        "description": "The SQL Server name."
+      }
+    },
+    "databaseName": {
+      "type": "string",
+      "metadata": {
+        "description": "The database name of the SQL Server."
+      }
+    },
     "sqlAdministratorLogin": {
       "type": "string",
       "metadata": {
@@ -34,8 +46,8 @@
     }
   },
   "variables": {
-    "sqlServerName": "[concat('sqlserver', uniqueString(subscription().id, resourceGroup().id))]",
-    "databaseName": "sample-db-with-tde",
+    "sqlServerName": "[parameters('serverName')]",
+    "databaseName": "[parameters('databaseName')]",
     "databaseEdition": "Basic",
     "databaseCollation": "SQL_Latin1_General_CP1_CI_AS",
     "databaseServiceObjectiveName": "Basic"
